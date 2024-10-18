@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>A pesquisa</title>
+  <style>
+    body {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background-color: #000;
+        color: #fff; /* Cor do texto branco */
+        font-family: Arial, sans-serif; /* Fonte padrão */
+    }
+
+    .caixa-hacker {
+        width: 800px;
+        background-color: #000;
+        border: 5px solid #fff; /* Borda branca */
+        border-radius: 20px;
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.8); /* Sombra branca */
+        padding: 20px;
+        margin-bottom: 20px;
+        text-align: center; /* Centralizar conteúdo */
+    }
+
+    .texto-paragrafo {
+        font-size: 18px;
+        line-height: 1.5;
+    }
+
+    .info-pessoa {
+        margin-top: 20px;
+        font-size: 16px;
+    }
+
+    .foto-falsa {
+        margin-top: 20px;
+        border: 5px solid #fff;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        height: 200px;
+        width: 250px;
+    }
+
+    a.button-like {
+        display: inline-block;
+        padding: 10px 20px;
+        margin-top: 20px;
+        color: #fff;
+        background-color: #000;
+        border: 2px solid #fff;
+        border-radius: 5px;
+        text-decoration: none;
+        font-size: 16px;
+        font-weight: bold;
+        text-align: center;
+        cursor: pointer;
+    }
+
+    a.button-like:hover {
+        background-color: #333;
+        border-color: #fff;
+    }
+  </style>
+</head>
+<body>
+
+<div class="caixa-hacker">
+    <p class="texto-paragrafo">Cuidado por onde navega 🙂</p>
+    <div class="info-pessoa" id="info-pessoa">
+        <!-- As informações da pessoa serão inseridas aqui -->
+    </div>
+  
+</div>
+
+<a href="../Nova pasta/o Site.html" class="button-like">Fim da Pesquisa</a>
+
+<script>
+    // Recupera as informações do localStorage
+    const nomeCompleto = localStorage.getItem('nomeCompleto');
+    const idade = localStorage.getItem('idade');
+    const estado = localStorage.getItem('estado');
+
+    // Insere as informações na div info-pessoa
+    const infoPessoaDiv = document.getElementById('info-pessoa');
+    infoPessoaDiv.innerHTML = `
+        <p>Nome: ${nomeCompleto}</p>
+        <p>Idade: ${idade}</p>
+        <p>Endereço: ${estado}</p>
+        <p class="texto-paragrafo" style="margin-top: 30px;">Seu segredo está descoberto. Agora, toda a sua identidade está em minhas mãos. Tudo que você pensou ser seguro está comprometido. Seus dados me pertencem, e você não pode escapar. Tenha cuidado com seus próximos passos, pois estou observando...</p>
+    `;
+</script>
+
+</body>
+</html>

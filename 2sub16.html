@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>A pesquisa</title>
+</head>
+<style>
+  body {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background-color: #000;
+      color: #fff; /* Cor do texto branco */
+      font-family: Arial, sans-serif; /* Fonte padrão */
+  }
+
+  .caixa-hacker {
+      width: 800px;
+      background-color: #000;
+      border: 5px solid #fff; /* Borda branca */
+      border-radius: 20px;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.8); /* Sombra branca */
+      padding: 20px;
+      margin-bottom: 20px;
+      text-align: center; /* Centralizar conteúdo */
+  }
+
+  .texto-paragrafo {
+      font-size: 18px;
+      line-height: 1.5;
+  }
+
+  .botao {
+      width: 150px;
+      padding: 10px;
+      margin: 10px;
+      border: none;
+      border-radius: 5px;
+      background-color: #333;
+      color: #fff;
+      font-size: 16px;
+      cursor: pointer;
+  }
+
+  .botao:hover {
+      background-color: #666; /* Cor mais escura ao passar o mouse */
+  }
+</style>
+<body>
+
+<div class="caixa-hacker">
+    <p class="texto-paragrafo" id="texto-animado"></p>
+    <button class="botao" onclick="respostaSim()">Sim</button>
+    <button class="botao" onclick="respostaNao()">Não</button>
+</div>
+
+<script>
+    
+    const respostaSim = () => {
+        const nextPagePath = "../Nova Pasta/Pergunta 17.html";
+        redirectToNextPage(nextPagePath); // Redireciona para a página "pagina_sim.html" quando clicado em "Sim"
+    }
+
+    const respostaNao = () => {
+        const nextPagePath = "../Nova Pasta/Pergunta 17.html";
+        redirectToNextPage(nextPagePath); // Redireciona para a página "Pergunta 4.html" quando clicado em "Não"
+    }
+
+    function redirectToNextPage(nextPagePath) {
+        window.location.href = nextPagePath; // Redireciona imediatamente para a próxima página
+    }
+</script>
+<script>
+    const textoOriginal = "Você acha que seria capaz de fazer isso em algum momento?";
+     const caixaTexto = document.getElementById('texto-animado');
+     let indice = 0;
+ 
+     function animarTexto() {
+         caixaTexto.innerHTML += textoOriginal.charAt(indice);
+         indice++;
+ 
+         if (indice < textoOriginal.length) {
+             setTimeout(animarTexto, 30); // Ajuste o intervalo de tempo conforme desejado
+         }
+     }
+ 
+     animarTexto();
+ 
+ </script>
+</body>
+</html>

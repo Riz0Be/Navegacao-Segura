@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>A pesquisa</title>
+</head>
+<style>
+  body {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background-color: #000;
+      color: #fff; /* Cor do texto branco */
+      font-family: Arial, sans-serif; /* Fonte padrão */
+  }
+
+  .caixa-hacker {
+      width: 800px;
+      background-color: #000;
+      border: 5px solid #fff; /* Borda branca */
+      border-radius: 20px;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.8); /* Sombra branca */
+      padding: 20px;
+      margin-bottom: 20px;
+  }
+
+  .texto-paragrafo {
+      font-size: 18px;
+      line-height: 1.5;
+      text-align: center; /* Alinhar o texto ao centro */
+  }
+
+  .input-resposta {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      border: 2px solid #fff;
+      border-radius: 5px;
+      background-color: #333; /* Fundo escuro */
+      color: #fff;
+      font-size: 16px;
+  }
+
+  .botao {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      border: none;
+      border-radius: 5px;
+      background-color: #333;
+      color: #fff;
+      font-size: 16px;
+      cursor: pointer;
+  }
+
+  .botao:hover {
+      background-color: #666; /* Cor mais escura ao passar o mouse */
+  }
+</style>
+<body>
+
+<div class="caixa-hacker">
+    <p class="texto-paragrafo" id="texto-animado"></p>
+    <input type="text" class="input-resposta" id="resposta" placeholder="Digite sua resposta...">
+    <button class="botao" onclick="proximaPergunta()">Avançar</button>
+</div>
+
+<script>
+    const proximaPergunta = () => {
+        const respostaInput = document.getElementById("resposta");
+        const resposta = respostaInput.value.trim(); // Remove espaços em branco do início e do final
+
+        if (resposta === "") {
+            alert("Por favor, digite sua resposta antes de avançar!");
+            return; // Sai da função se a resposta estiver vazia
+        }
+
+        if (resposta.length < 8 || resposta.length > 80) {
+            alert("A resposta deve ter entre 8 e 80 caracteres!");
+            return; // Sai da função se a resposta não estiver dentro do intervalo desejado
+        }
+        
+        if (!/^[a-zA-ZÀ-ÿ\s]+$/.test(resposta)) {
+            alert("A resposta deve conter apenas letras, espaços e caracteres acentuados!");
+            return;
+        }
+        redirectToNextPage(); // Redireciona para a próxima página
+    }
+
+    const textoOriginal = "Quem você acha que está te tolerando?";
+
+    const caixaTexto = document.getElementById('texto-animado');
+    let indice = 0;
+
+    function animarTexto() {
+      caixaTexto.innerHTML += textoOriginal.charAt(indice);
+      indice++;
+
+      if (indice < textoOriginal.length) {
+        setTimeout(animarTexto, 30); // Ajuste o intervalo de tempo conforme desejado
+      }
+    }
+
+    animarTexto();
+
+    const nextPagePath = "../Nova Pasta/Pergunta 20.html";
+
+    function redirectToNextPage() {
+        window.location.assign(nextPagePath);
+    }
+</script>
+
+</body>
+</html>

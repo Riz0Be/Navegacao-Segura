@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini jogos - Navegações Perigosas</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center; 
+            min-height: 100vh; 
+            background-color: #000; 
+        }
+
+        canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1;
+            opacity: 0.7;
+        }
+
+        a {
+            display: block;
+            width: 200px;
+            height: 50px;
+            margin: 20px auto;
+            text-align: center;
+            line-height: 50px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #fff;
+            text-shadow: 0px 0px 10px #fff;
+            background-color: #000;
+            border-radius: 10px;
+            border: 2px solid #fff;
+            transition: all 0.3s ease-in-out;
+            position: relative;
+            overflow: hidden;
+            z-index: 2;
+            animation: fadeIn 1s ease-in-out forwards;
+        }
+
+        a:hover {
+            background-color: #fff;
+            border: 2px solid #333;
+            color: #000;
+            text-shadow: none;
+            box-shadow: 0px 0px 10px #fff;
+            transform: scale(1.1);
+        }
+
+        a:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, #000 0%, #111 100%);
+            opacity: 0.2;
+            z-index: -1;
+            transform: scale(1.2);
+        }
+
+        .caixa-hacker {
+            width: 800px;
+            background-color: #000; 
+            border: 5px solid #d8d6da; 
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(66, 66, 66, 0.8); 
+            padding: 20px; 
+            margin: 0 auto; /* Centraliza horizontalmente */
+        }
+
+        .texto-paragrafo {
+            color: #cacaca; 
+            font-family: "Courier New", Courier, monospace;
+            font-size: 14px; 
+            line-height: 1.5;
+            text-align: left; 
+            overflow: hidden; 
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            position: fixed;
+            top: 600px; 
+            width: 100%;
+            padding: 0 20px;
+        }
+
+        .button {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px; 
+            cursor: pointer;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        #continue-button {
+            margin-top: 40px;
+            background-color: #8c00ff;
+            color: #000;
+            border: 2px solid #6f00ff;
+            padding: 12px 24px;
+            font-size: 24px;
+            cursor: pointer;
+            font-family: "Courier New", monospace;
+            position: relative;
+            overflow: hidden;
+            box-shadow: inset 0 0 0 0 #a200ff;
+            opacity: 0;
+        }
+
+        #continue-button::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 0, 0.2), transparent);
+            pointer-events: none;
+            animation: scan 3s linear infinite;
+        }
+
+        button {
+            position: absolute;
+            visibility: hidden;
+        }
+    </style>
+</head>
+<body>
+    <div class="caixa-hacker">
+        <p class="texto-paragrafo" id="texto-animado"></p>
+    </div>
+
+    <script>
+        const textoOriginal = `Tenha uma boa experiência...`;
+
+        const caixaTexto = document.getElementById('texto-animado');
+        let indice = 0;
+
+        function animarTexto() {
+            caixaTexto.innerHTML += textoOriginal.charAt(indice);
+            indice++;
+
+            if (indice < textoOriginal.length) {
+                setTimeout(animarTexto, 30); // Ajuste o intervalo de tempo conforme desejado
+            }
+        }
+
+        animarTexto();
+    </script>
+
+<button id="continue-button" class="hidden" onclick="redirectToNextPage()">Continue</button>
+<script>
+    const nextPagePath = "../Nova Pasta/tela de carregamento quiz.html";
+
+    window.addEventListener("load", function () {
+        // Simulate a delay (3000ms) before hiding the loading container
+        setTimeout(function () {
+            const loadingContainer = document.getElementById("loading-container");
+            setTimeout(function () {
+
+            }, 2500); // Wait for the fade-out animation to complete (1000ms)
+
+            // Automatically redirect after 5 seconds (5000ms)
+            setTimeout(function () {
+                redirectToNextPage(); // Redirect to the next page
+            }, 2000); // Wait for 5 seconds (adjust as needed)
+        }, 1500); // Simulate a 3-second delay (adjust as needed)
+    });
+
+    function showContinueButton() {
+        const mainContent = document.getElementById("main-content");
+        mainContent.style.display = "block";
+        mainContent.style.opacity = "1"; // Apply fade-in effect to the main content
+
+        const continueButton = document.getElementById("continue-button");
+        continueButton.classList.add("show-button");
+    }
+
+    function redirectToNextPage() {
+        window.location.assign(nextPagePath);
+    }
+</script> 
+</body>
+</html>

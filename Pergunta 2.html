@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>A pesquisa</title>
+  <style>
+    body {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background-color: #000;
+        color: #fff;
+        font-family: Arial, sans-serif;
+    }
+
+    .caixa-hacker {
+        width: 800px;
+        background-color: #000;
+        border: 5px solid #fff;
+        border-radius: 20px;
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+        padding: 20px;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .texto-paragrafo {
+        font-size: 18px;
+        line-height: 1.5;
+    }
+
+    .input-resposta {
+        width: 100%;
+        padding: 10px;
+        margin-top: 10px;
+        border: 2px solid #fff;
+        border-radius: 5px;
+        background-color: #333;
+        color: #fff;
+        font-size: 16px;
+    }
+
+    .botao {
+        width: 100%;
+        padding: 10px;
+        margin-top: 10px;
+        border: none;
+        border-radius: 5px;
+        background-color: #333;
+        color: #fff;
+        font-size: 16px;
+        cursor: pointer;
+    }
+
+    .botao:hover {
+        background-color: #666;
+    }
+  </style>
+</head>
+<body>
+
+<div class="caixa-hacker">
+    <p class="texto-paragrafo" id="texto-animado"></p>
+    <input type="text" class="input-resposta" id="resposta" placeholder="Digite sua resposta...">
+    <button class="botao" onclick="proximaPergunta()">Avançar</button>
+</div>
+
+<script>
+    const proximaPergunta = () => {
+        const respostaInput = document.getElementById("resposta");
+        const resposta = respostaInput.value.trim();
+
+        if (resposta === "") {
+            alert("Por favor, digite sua resposta antes de avançar!");
+            return;
+        }
+
+        if (!/^\d+$/.test(resposta)) {
+            alert("Por favor, insira apenas números!");
+            return;
+        }
+
+        if (resposta.length < 2 || resposta.length > 2) {
+            alert("A idade deve ter 2 caracteres!");
+            return;
+        }
+
+        localStorage.setItem('idade', resposta);
+        redirectToNextPage();
+    }
+
+    const textoOriginal = "Qual a sua idade?";
+
+    const caixaTexto = document.getElementById('texto-animado');
+    let indice = 0;
+
+    function animarTexto() {
+      caixaTexto.innerHTML += textoOriginal.charAt(indice);
+      indice++;
+
+      if (indice < textoOriginal.length) {
+        setTimeout(animarTexto, 30);
+      }
+    }
+
+    animarTexto();
+
+    const nextPagePath = "../Nova Pasta/Pergunta 3.html";
+
+    function redirectToNextPage() {
+        window.location.href = nextPagePath;
+    }
+</script>
+
+</body>
+</html>
